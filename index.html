@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Science Cafe | Digital Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0f0b08;
+        --panel: #17110f;
+        --panel-2: #221713;
+        --text: #fff7f0;
+        --muted: #d7c0b1;
+        --accent: #ff7a1a;
+        --accent-2: #ffb347;
+        --accent-soft: rgba(255, 122, 26, 0.16);
+        --border: rgba(255, 255, 255, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(255, 122, 26, 0.16), transparent 24%),
+          linear-gradient(135deg, var(--bg) 0%, #1b1210 100%);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 24px;
+        align-items: center;
+        background: linear-gradient(135deg, rgba(255, 122, 26, 0.15), rgba(255, 179, 71, 0.14));
+        border: 1px solid var(--border);
+        border-radius: 26px;
+        padding: 28px;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        margin: 0 0 10px;
+      }
+
+      .hero p {
+        color: var(--muted);
+        line-height: 1.7;
+        margin: 0 0 16px;
+      }
+
+      .badge {
+        display: inline-block;
+        background: var(--accent-soft);
+        color: var(--accent-2);
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+        border: 1px solid rgba(255, 179, 71, 0.25);
+      }
+
+      .hero img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(255, 122, 26, 0.18);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #1e0f08;
+      }
+
+      .btn-secondary {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text);
+      }
+
+      .section {
+        margin-top: 24px;
+      }
+
+      .section-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+
+      .section-title h2 {
+        font-family: "Playfair Display", serif;
+        margin: 0;
+        font-size: 1.45rem;
+      }
+
+      .section-title span {
+        color: var(--accent-2);
+        font-weight: 600;
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .menu-card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+
+      .menu-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 34px rgba(255, 122, 26, 0.18);
+        border-color: rgba(255, 122, 26, 0.4);
+      }
+
+      .menu-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .menu-card-content {
+        padding: 14px 16px 16px;
+      }
+
+      .menu-card h3 {
+        margin: 0 0 6px;
+        font-size: 1.05rem;
+      }
+
+      .menu-card p {
+        margin: 0 0 10px;
+        font-size: 0.95rem;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .price {
+        font-weight: 700;
+        color: var(--accent-2);
+      }
+
+      .qr-card {
+        display: grid;
+        grid-template-columns: 1fr 0.8fr;
+        gap: 18px;
+        align-items: center;
+        padding: 20px;
+        background: linear-gradient(135deg, rgba(255, 122, 26, 0.14), rgba(255, 179, 71, 0.08));
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        margin-top: 24px;
+      }
+
+      .qr-card img {
+        width: 220px;
+        height: 220px;
+        border-radius: 18px;
+        background: white;
+        padding: 10px;
+        margin: 0 auto;
+      }
+
+      .qr-card h3 {
+        margin: 0 0 8px;
+        font-size: 1.15rem;
+      }
+
+      .qr-card p {
+        color: var(--muted);
+        line-height: 1.7;
+        margin: 0 0 14px;
+      }
+
+      .footer-note {
+        margin-top: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .menu-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .qr-card {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 16px;
+        }
+
+        .hero {
+          padding: 18px;
+        }
+
+        .hero h1 {
+          font-size: 2.1rem;
+        }
+
+        .menu-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section class="hero">
+        <div>
+          <div class="badge">Fast service • Freshly grilled • Cozy vibes</div>
+          <h1>Science Cafe</h1>
+          <p>
+            Modern comfort food with juicy burgers, oven-fired pizza, shawarma wraps,
+            savory steaks, and refreshing drinks made for every craving.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#menu">View Full Menu</a>
+            <a class="btn btn-secondary" href="#qr">Scan QR Code</a>
+          </div>
+        </div>
+        <img
+          src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80"
+          alt="Burger and fries served at a stylish cafe"
+        />
+      </section>
+
+      <section class="section" id="menu">
+        <div class="section-title">
+          <h2>Burgers</h2>
+          <span>All prices in ETB</span>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Special burger" />
+            <div class="menu-card-content">
+              <h3>Special Burger</h3>
+              <p>Double patty, melted cheese, lettuce, sauce, and crispy fries.</p>
+              <div class="price">450 ETB</div>
+            </div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80" alt="Beef burger" />
+            <div class="menu-card-content">
+              <h3>Beef Burger</h3>
+              <p>Juicy grilled beef with onion, tomato, and house sauce.</p>
+              <div class="price">400 ETB</div>
+            </div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&w=800&q=80" alt="Ham burger" />
+            <div class="menu-card-content">
+              <h3>Ham Burger</h3>
+              <p>Smoky ham, cheddar, and fresh toppings with a rich finish.</p>
+              <div class="price">380 ETB</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <h2>Pizza & Wraps</h2>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80" alt="Pizza" />
+            <div class="menu-card-content">
+              <h3>Classic Pizza</h3>
+              <p>Tomato sauce, mozzarella, and a crispy golden crust.</p>
+              <div class="price">650 ETB</div>
+            </div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=800&q=80" alt="Shawarma" />
+            <div class="menu-card-content">
+              <h3>Chicken Shawarma</h3>
+              <p>Spiced chicken wrapped in warm flatbread with garlic sauce.</p>
+              <div class="price">320 ETB</div>
+            </div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80" alt="Burrito" />
+            <div class="menu-card-content">
+              <h3>Beef Burrito</h3>
+              <p>Stuffed with seasoned beef, rice, beans, and salsa.</p>
+              <div class="price">350 ETB</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <h2>Steaks & More</h2>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=80" alt="Steak" />
+            <div class="menu-card-content">
+              <h3>Grilled Steak</h3>
+              <p>Tender steak served with roasted vegetables and sauce.</p>
+              <div class="price">900 ETB</div>
+            </div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1516100882582-96c3a05fe590?auto=format&fit=crop&w=800&q=80" alt="Chicken wings" />
+            <div class="menu-card-content">
+              <h3>Spicy Wings</h3>
+              <p>Golden fried wings with smoky seasoning and dip.</p>
+              <div class="price">280 ETB</div>
+            </div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=800&q=80" alt="Pasta" />
+            <div class="menu-card-content">
+              <h3>Chicken Pasta</h3>
+              <p>Creamy pasta with grilled chicken and herbs.</p>
+              <div class="price">420 ETB</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <h2>Drinks</h2>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&w=800&q=80" alt="Soft drinks" />
+            <div class="menu-card-content">
+              <h3>Soft Drinks</h3>
+              <p>Fresh chilled coke, sprite, fanta, and more.</p>
+              <div class="price">70 ETB</div>
+            </div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80" alt="Mojito" />
+            <div class="menu-card-content">
+              <h3>Mojito</h3>
+              <p>Minty, citrusy, and refreshing with a cool finish.</p>
+              <div class="price">220 ETB</div>
+            </div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Coffee latte" />
+            <div class="menu-card-content">
+              <h3>Cold Coffee Latte</h3>
+              <p>Smooth espresso with milk and a sweet blend.</p>
+              <div class="price">180 ETB</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="qr-card" id="qr">
+        <div>
+          <h3>Scan to open this menu on your phone</h3>
+          <p>Use your camera to scan the QR code and open Science Cafe’s digital menu instantly from any device.</p>
+          <a class="btn btn-primary" id="qrLink" href="">Open on phone</a>
+        </div>
+        <img id="qrCode" src="" alt="QR code for Science Cafe menu" />
+      </section>
+
+      <p class="footer-note">Open daily from 8:00 AM to 10:00 PM • Science Cafe • Addis Ababa</p>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const qrImage = document.getElementById("qrCode");
+        const qrLink = document.getElementById("qrLink");
+        const pageUrl = window.location.href;
+        if (qrImage) {
+          qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(pageUrl)}`;
+        }
+        if (qrLink) {
+          qrLink.href = pageUrl;
+        }
+      });
+    </script>
+  </body>
+</html>
